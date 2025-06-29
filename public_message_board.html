@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>CQHI-留言板</title>
+    <script>
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'hidden') {
+                changeTitle('我藏好了 (๑ˉ∀ˉ๑)');
+            } else {
+                changeTitle('被你发现了 (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)');
+            }
+        });
+
+        function changeTitle(message) {
+            document.title = 'CQHI-留言板 - ' + message;
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
+        }
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-bg: #f9f9f9;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 1rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .main-content {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: -5rem auto 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .main-content:hover {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+            clip-path: ellipse(100% 55% at 50% 35%);
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 主要内容区 */
+        .main-content {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: -5rem auto 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-content h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -10px;
+            left: 0;
+            background: #3498db;
+            border-radius: 2px;
+        }
+
+        .main-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .main-content {
+                padding: 2rem 1rem;
+            }
+        }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #3498db;
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: #2980b9;
+        }
+
+        /* 卡片效果 */
+        .message-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .message-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 加载动画 */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+
+            /* 骨架屏加载效果 */
+            .skeleton {
+                background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                background-size: 200% 100%;
+                animation: shimmer 1.5s infinite;
+            }
+
+            @keyframes shimmer {
+                to {
+                    background-position: -200% 0;
+                }
+            }
+
+            /* 减少布局偏移 */
+            img,
+            video {
+                width: 100%;
+                height: auto;
+                aspect-ratio: attr(width) / attr(height);
+            }
+
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 输入框聚焦效果 */
+        .input-group {
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 工具提示效果 */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        [data-tooltip]:hover::after {
+            opacity: 1;
+        }
+
+        /* 脉冲动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        #message-board {
+            border: none;
+            min-height: calc(100vh - 200px);
+            padding: 20px;
+            margin: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .message:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        button {
+            margin: 20px;
+            width: calc(100% - 1400px);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        ::placeholder {
+            color: #95a5a6;
+            opacity: 1;
+        }
+        .submit-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="favicon.png" alt="CQHI Logo" style="height: 3rem; vertical-align: middle; margin-right: 0.5rem;">
+            CQHI
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="download.html">模组下载</a></li>
+            <li><a href="news.html">新闻</a></li>
+            <li><a href="public_message_board.html">公共留言板</a></li>
+        </ul>
+    </nav>
+
+    <!-- 展示区 -->
+    <section class="hero">
+        <h1>公共留言板</h1>
+        <h4>只能留言给自己看罢了......</h4>
+    </section>
+    <div id="message-board"></div>
+
+    <div class="input-group">
+        <input type="text" id="username" placeholder="请输入您的用户名">
+    </div>
+
+    <div class="input-group">
+        <label for="message-input">留言内容:</label>
+        <textarea id="message-input" placeholder="请输入您的留言..."></textarea>
+    </div>
+
+    <button id="submit-btn">提交留言</button>
+
+    <script>
+        // 获取DOM元素
+        const messageBoard = document.getElementById('message-board');
+        const messageInput = document.getElementById('message-input');
+        const usernameInput = document.getElementById('username');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // 加载保存的留言
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('publicMessages')) || [];
+            messageBoard.innerHTML = messages.map(msg =>
+                `<div class="message">
+                    <div class="message-header">
+                        <span>${msg.username}</span>
+                        <span>${new Date(msg.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div class="message-content">${msg.content}</div>
+                    <button class="delete-btn" data-id="${msg.id}">删除</button>
+                </div>`
+            ).join('');
+
+            // 添加删除按钮事件
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', deleteMessage);
+            });
+        }
+
+        // 保存新留言
+        function saveMessage() {
+            const content = messageInput.value.trim();
+            const username = usernameInput.value.trim();
+            if (content === '' || username === '') return;
+
+            let messages = JSON.parse(localStorage.getItem('publicMessages')) || [];
+            const newMessage = {
+                id: Date.now(),
+                username: username,
+                content: content,
+                timestamp: new Date().getTime()
+            };
+
+            messages.push(newMessage);
+            localStorage.setItem('publicMessages', JSON.stringify(messages));
+
+            messageInput.value = '';
+            loadMessages();
+        }
+
+        // 删除留言
+        function deleteMessage(e) {
+            const id = parseInt(e.target.getAttribute('data-id'));
+            let messages = JSON.parse(localStorage.getItem('publicMessages')) || [];
+            messages = messages.filter(msg => msg.id !== id);
+            localStorage.setItem('publicMessages', JSON.stringify(messages));
+            loadMessages();
+        }
+
+        // 事件监听
+        submitBtn.addEventListener('click', saveMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                saveMessage();
+            }
+        });
+
+        // 页面加载时显示已有留言
+        window.addEventListener('DOMContentLoaded', loadMessages);
+    </script>
+    <footer>
+        <p>&copy; 2023-至今 [CQHI] 赤旗重工制作组 版权所有</p>
+    </footer>
+</body>
+<style>
+    .btn-outline {
+        background: transparent;
+        border: 2px solid #3498db;
+        color: #3498db;
+    }
+
+    .btn {
+        background: linear-gradient(to right, #3498db, #2c3e50);
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .input-container {
+            padding: 0 1rem;
+        }
+        
+        .input-group {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+
+</html>

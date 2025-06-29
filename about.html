@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>CQHI-关于</title>
+    <script>
+        document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'hidden') {
+                changeTitle('我藏好了 (๑ˉ∀ˉ๑)');
+            } else {
+                changeTitle('被你发现了 (⁄ ⁄>⁄ ▽ ⁄<⁄ ⁄)');
+            }
+        });
+
+        function changeTitle(message) {
+            document.title = 'CQHI-关于 - ' + message;
+        }
+    </script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
+            }
+    
+            body {
+                line-height: 1.8;
+                color: #333;
+                background-color: #f9f9f9;
+            }
+    
+            /* 导航栏样式 */
+            .navbar {
+                background: #2c3e50;
+                color: white;
+                padding: 1.5rem 3rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            .logo {
+                font-size: 1.8rem;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
+    
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+    
+            .nav-links li {
+                margin-left: 2.5rem;
+            }
+    
+            .nav-links a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 1rem 0;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+    
+            .nav-links a:hover {
+                color: #3498db;
+                transform: translateY(-2px);
+            }
+    
+            .logo {
+                font-size: 1.8rem;
+                font-weight: 700;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+            }
+    
+            .logo:hover {
+                transform: scale(1.05);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+    
+            .main-content {
+                padding: 5rem 2rem;
+                max-width: 1200px;
+                margin: -5rem auto 0;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+                position: relative;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+    
+            .main-content:hover {
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                transform: translateY(-5px);
+            }
+    
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 3px;
+                bottom: 0;
+                left: 0;
+                background-color: #3498db;
+                transition: width 0.3s;
+            }
+    
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+    
+            .hero {
+                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+                color: white;
+                padding: 8rem 2rem;
+                text-align: center;
+                clip-path: ellipse(100% 60% at 50% 35%);
+            }
+    
+            @keyframes gradientBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+    
+                50% {
+                    background-position: 100% 50%;
+                }
+    
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+    
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 1.5rem;
+                font-weight: 700;
+            }
+    
+            .hero p {
+                font-size: 1.5rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+    
+            /* 主要内容区 */
+            .main-content {
+                padding: 5rem 2rem;
+                max-width: 1200px;
+                margin: -5rem auto 0;
+                background: white;
+                border-radius: 10px;
+                box-shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
+                position: relative;
+                z-index: 1;
+            }
+    
+            .main-content h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+                color: #2c3e50;
+                position: relative;
+                display: inline-block;
+            }
+    
+            .main-content h2::after {
+                content: '';
+                position: absolute;
+                width: 50%;
+                height: 4px;
+                bottom: -10px;
+                left: 0;
+                background: #3498db;
+                border-radius: 2px;
+            }
+    
+            .main-content p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+                color: #555;
+            }
+    
+            /* 页脚样式 */
+            footer {
+                background: #2c3e50;
+                color: white;
+                text-align: center;
+                padding: 3rem 2rem;
+                margin-top: 5rem;
+            }
+    
+            footer p {
+                margin-bottom: 1rem;
+            }
+    
+            /* 响应式设计 */
+            @media (max-width: 768px) {
+                .navbar {
+                    padding: 1rem;
+                    flex-direction: column;
+                }
+    
+                .nav-links {
+                    margin-top: 1rem;
+                }
+    
+                .nav-links li {
+                    margin-left: 1.5rem;
+                }
+    
+                .hero {
+                    padding: 6rem 1rem;
+                }
+    
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+    
+                .main-content {
+                    padding: 3rem 1rem;
+                }
+            }
+    
+            .btn {
+                display: inline-block;
+                padding: 0.8rem 2rem;
+                background: #3498db;
+                color: white;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+    
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                background: #2980b9;
+            }
+    
+            /* 卡片效果 */
+            .card {
+                background: white;
+                border-radius: 10px;
+                padding: 2rem;
+                margin: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+    
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+    
+            /* 加载动画 */
+            .loader {
+                border: 4px solid #f3f3f3;
+                border-top: 4px solid #3498db;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+    
+                /* 骨架屏加载效果 */
+                .skeleton {
+                    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+                    background-size: 200% 100%;
+                    animation: shimmer 1.5s infinite;
+                }
+    
+                @keyframes shimmer {
+                    to {
+                        background-position: -200% 0;
+                    }
+                }
+    
+                /* 减少布局偏移 */
+                img,
+                video {
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: attr(width) / attr(height);
+                }
+    
+                animation: spin 1s linear infinite;
+                margin: 2rem auto;
+            }
+    
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+    
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+    
+            /* 输入框聚焦效果 */
+            input:focus,
+            textarea:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+                transition: all 0.3s ease;
+            }
+    
+            /* 平滑滚动 */
+            html {
+                scroll-behavior: smooth;
+            }
+    
+            /* 工具提示效果 */
+            [data-tooltip] {
+                position: relative;
+            }
+    
+            [data-tooltip]:hover::after {
+                content: attr(data-tooltip);
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #333;
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+    
+            [data-tooltip]:hover::after {
+                opacity: 1;
+            }
+    
+            /* 脉冲动画 */
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+    
+                50% {
+                    transform: scale(1.05);
+                }
+    
+                100% {
+                    transform: scale(1);
+                }
+            }
+    
+            .pulse {
+                animation: pulse 2s infinite;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="logo">
+                <img src="favicon.png" alt="CQHI Logo" style="height: 3rem; vertical-align: middle; margin-right: 0.5rem;">
+                CQHI
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="download.html">模组下载</a></li>
+                <li><a href="news.html">新闻</a></li>
+                <li><a href="public_message_board.html">公共留言板</a></li>
+            </ul>
+        </nav>
+    
+        <!-- 展示区 -->
+        <section class="hero">
+            <h1>关于我们 - [CQHI] 赤旗重工制作组</h1>
+            <p>一个由RTS游戏爱好者组成的《铁锈战争》游戏模组制作组</p>
+        </section>
+    
+        <!-- 主要内容区 -->
+        <section class="main-content">
+            <h2>我们的概述</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>只有一个人负责代码贴图特效awa，其他人都是测试组啊？<h3>
+                    <h4>制作组成员（排名不分先后）：</h4>
+                    <h5>组长：@[CQHI]政委</h5>
+                    <h5>组员：@[CQHI]杰哥</h5>
+                    <h4>外部贡献者（排名不分先后）：</h4>
+                    <h5>@辰陨同志</h5>
+                    <h5>@悠咸的闲鱼QwQ</h5>
+                    <h5>@Elaina</h5>
+                </div>
+                <div class="card">
+                    <h3>联系方式</h3>
+                    <p>联系方式:  @[CQHI]政委 的邮箱： 2796693830@qq.com </p>
+                </div>
+            </div>
+
+            <h2>作者的小废话</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>写代码真折腾啊啊啊啊啊啊啊啊啊啊啊啊......<h3>
+                    <h3>画贴图真折腾啊啊啊啊啊啊啊啊啊啊啊啊......<h3>
+                    <h3>做地图真折腾啊啊啊啊啊啊啊啊啊啊啊啊......</h3>
+                </div>
+            </div>
+    
+        </section>
+    
+        <!-- 页脚 -->
+        <footer>
+            <p>&copy; 2023-至今 [CQHI] 赤旗重工制作组 版权所有</p>
+        </footer>
+    </body>
+<style>
+    .btn-outline {
+        background: transparent;
+        border: 2px solid #3498db;
+        color: #3498db;
+    }
+
+    .btn {
+        background: linear-gradient(to right, #3498db, #2c3e50);
+        border: none;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+</html>
